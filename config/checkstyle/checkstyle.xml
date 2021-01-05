@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN" "https://checkstyle.org/dtds/configuration_1_3.dtd">
+<module name="Checker">
+    <property name="charset" value="UTF-8"/>
+    <property name="severity" value="error"/>
+
+    <!-- Verifica existência de tab nos arquivos -->
+    <module name="FileTabCharacter">
+        <property name="eachLine" value="true"/>
+    </module>
+
+    <!-- Verifica número de linhas para arquivos java -->
+    <module name="FileLength">
+        <property name="max" value="8000"/>
+        <property name="fileExtensions" value="java"/>
+    </module>
+
+    <module name="TreeWalker">
+        <!-- Permite comentário para desabilitar Checkstyle (CHECKSTYLE:OFF e CHECKSTYLE:ON) -->
+        <module name="SuppressionCommentFilter"/>
+
+        <!-- Verifica existência de chaves / parênteses -->
+        <module name="NeedBraces"/>
+        <module name="LeftCurly"/>
+        <module name="RightCurly"/>
+
+        <!-- Verifica linhas maiores de 300 caracteres -->
+        <!--<module name="LineLength">-->
+        <!--<property name="max" value="300"/>-->
+        <!--<property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>-->
+        <!--</module>-->
+
+        <!-- Verifica se existe apenas um comando por linha -->
+        <module name="OneStatementPerLine"/>
+
+        <!-- Verifica se existe apenas uma variável por linha -->
+        <!--<module name="MultipleVariableDeclarations"/>-->
+
+        <!-- Verifica se Arrays estão definidos no formato Java (String[] args, ao invés de String args[]) -->
+        <module name="ArrayTypeStyle"/>
+
+        <!-- Verifica se switchs contém catch default -->
+        <!--<module name="MissingSwitchDefault"/>-->
+
+        <!-- Verifica se switchs contém comandos sem break -->
+        <module name="FallThrough"/>
+
+        <!-- Verifica se longs estão definidos com L maiúsculo -->
+        <!--<module name="UpperEll"/>-->
+
+        <!-- Verifica ordem dos modificadores -->
+        <!--<module name="ModifierOrder"/>-->
+
+        <!-- Verifica nome de pacotes -->
+        <!--<module name="PackageName">-->
+        <!--<property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>-->
+        <!--</module>-->
+
+        <!-- Verifica nome de classes -->
+        <module name="TypeName"/>
+
+        <!-- Verifica nome de variáveis / parâmetros -->
+        <module name="ConstantName"/>
+        <module name="StaticVariableName"/>
+        <module name="MemberName"/>
+        <module name="ParameterName"/>
+        <module name="LambdaParameterName"/>
+        <module name="LocalVariableName"/>
+        <module name="CatchParameterName">
+            <property name="format" value="^[a-z]([a-zA-Z0-9]*)?$"/>
+        </module>
+        <module name="ClassTypeParameterName">
+            <property name="format" value="^[A-Z]*$"/>
+        </module>
+        <module name="MethodTypeParameterName">
+            <property name="format" value="^[A-Z]*$"/>
+        </module>
+        <module name="InterfaceTypeParameterName">
+            <property name="format" value="^[A-Z]*$"/>
+        </module>
+
+        <!-- Verifica nome de métodos -->
+        <module name="MethodName"/>
+
+        <!-- Verifica se Generics não contém whitespace em sua declaração -->
+        <module name="GenericWhitespace"/>
+
+        <!-- Verifica indentação -->
+        <module name="Indentation"/>
+        <module name="CommentsIndentation"/>
+
+        <!-- Verifica ordem de declaração de métodos com overload -->
+        <!--<module name="OverloadMethodsDeclarationOrder"/>-->
+
+        <!-- Verifica existência de espaço em branco / quebra de linha aonde desnecessário -->
+        <module name="MethodParamPad"/>
+        <module name="ParenPad"/>
+        <module name="NoWhitespaceBefore">
+            <property name="tokens" value="COMMA, SEMI, POST_INC, POST_DEC, DOT, ELLIPSIS, METHOD_REF"/>
+            <property name="allowLineBreaks" value="true"/>
+        </module>
+
+        <!-- Verifica localização da declaração de annotations -->
+        <!--<module name="AnnotationLocation">-->
+        <!--<property name="id" value="AnnotationLocationMostCases"/>-->
+        <!--<property name="tokens" value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF"/>-->
+        <!--</module>-->
+        <!--<module name="AnnotationLocation">-->
+        <!--<property name="id" value="AnnotationLocationVariables"/>-->
+        <!--<property name="tokens" value="VARIABLE_DEF"/>-->
+        <!--<property name="allowSamelineMultipleAnnotations" value="true"/>-->
+        <!--</module>-->
+
+        <!-- Verifica separadores de quebra de linha -->
+        <!--<module name="SeparatorWrap">-->
+        <!--<property name="id" value="SeparatorWrapDot"/>-->
+        <!--<property name="tokens" value="DOT"/>-->
+        <!--<property name="option" value="nl"/>-->
+        <!--</module>-->
+        <!--<module name="SeparatorWrap">-->
+        <!--<property name="id" value="SeparatorWrapComma"/>-->
+        <!--<property name="tokens" value="COMMA"/>-->
+        <!--<property name="option" value="EOL"/>-->
+        <!--</module>-->
+
+        <!-- Verifica existência de blocos vazios -->
+        <!--<module name="EmptyBlock">-->
+        <!--<property name="option" value="TEXT"/>-->
+        <!--<property name="tokens" value="LITERAL_TRY, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE, LITERAL_SWITCH"/>-->
+        <!--</module>-->
+        <!--<module name="EmptyCatchBlock">-->
+        <!--<property name="exceptionVariableName" value="expected"/>-->
+        <!--</module>-->
+
+        <!-- Verifica existência de Line Wraps -->
+        <!--<module name="NoLineWrap"/>-->
+
+        <!-- Verifica imports com asterisco -->
+        <!-- <module name="AvoidStarImport"/>-->
+        <!-- NOSONAR-->
+    </module>
+</module>

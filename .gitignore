@@ -1,0 +1,16 @@
+build
+target
+out
+bin
+
+.project
+.classpath
+.vscode
+.settings
+.idea
+.gradle
+
+gradle
+gradlew
+gradlew.bat
+*.iml
