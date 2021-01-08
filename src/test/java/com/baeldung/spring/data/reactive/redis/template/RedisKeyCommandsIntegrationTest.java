@@ -2,7 +2,6 @@ package com.baeldung.spring.data.reactive.redis.template;
 
 
 import com.baeldung.spring.data.reactive.redis.Application;
-
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -27,7 +26,7 @@ import java.nio.ByteBuffer;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = Application.class)
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
 public class RedisKeyCommandsIntegrationTest {
-    
+
     private static redis.embedded.RedisServer redisServer;
 
     @Autowired
@@ -35,13 +34,13 @@ public class RedisKeyCommandsIntegrationTest {
 
     @Autowired
     private ReactiveStringCommands stringCommands;
-    
+
     @BeforeAll
     public static void startRedisServer() throws IOException {
         redisServer = new RedisServerBuilder().port(6379).setting("maxmemory 256M").build();
         redisServer.start();
     }
-    
+
     @AfterAll
     public static void stopRedisServer() throws IOException {
         redisServer.stop();
@@ -52,21 +51,21 @@ public class RedisKeyCommandsIntegrationTest {
         Flux<String> keys = Flux.just("key1", "key2", "key3", "key4");
 
         Flux<SetCommand> generator = keys.map(String::getBytes)
-            .map(ByteBuffer::wrap)
-            .map(key -> SetCommand.set(key)
-                .value(key));
+                .map(ByteBuffer::wrap)
+                .map(key -> SetCommand.set(key)
+                        .value(key));
 
         StepVerifier.create(stringCommands.set(generator))
-            .expectNextCount(4L)
-            .verifyComplete();
+                .expectNextCount(4L)
+                .verifyComplete();
 
         Mono<Long> keyCount = keyCommands.keys(ByteBuffer.wrap("key*".getBytes()))
-            .flatMapMany(Flux::fromIterable)
-            .count();
+                .flatMapMany(Flux::fromIterable)
+                .count();
 
         StepVerifier.create(keyCount)
-            .expectNext(4L)
-            .verifyComplete();
+                .expectNext(4L)
+                .verifyComplete();
 
     }
 }

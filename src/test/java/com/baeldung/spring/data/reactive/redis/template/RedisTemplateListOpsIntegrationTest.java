@@ -32,13 +32,13 @@ public class RedisTemplateListOpsIntegrationTest {
     private ReactiveStringRedisTemplate redisTemplate;
 
     private ReactiveListOperations<String, String> reactiveListOps;
-    
+
     @BeforeAll
     public static void startRedisServer() throws IOException {
         redisServer = new RedisServerBuilder().port(6379).setting("maxmemory 128M").build();
         redisServer.start();
     }
-    
+
     @AfterAll
     public static void stopRedisServer() throws IOException {
         redisServer.stop();
@@ -52,18 +52,18 @@ public class RedisTemplateListOpsIntegrationTest {
     @Test
     public void givenListAndValues_whenLeftPushAndLeftPop_thenLeftPushAndLeftPop() {
         Mono<Long> lPush = reactiveListOps.leftPushAll(LIST_NAME, "first", "second")
-            .log("Pushed");
+                .log("Pushed");
 
         StepVerifier.create(lPush)
-            .expectNext(2L)
-            .verifyComplete();
+                .expectNext(2L)
+                .verifyComplete();
 
         Mono<String> lPop = reactiveListOps.leftPop(LIST_NAME)
-            .log("Popped");
+                .log("Popped");
 
         StepVerifier.create(lPop)
-            .expectNext("second")
-            .verifyComplete();
+                .expectNext("second")
+                .verifyComplete();
     }
 
 }

@@ -1,8 +1,8 @@
 package com.baeldung.spring.data.redis.model;
 
-import java.io.Serializable;
-
 import org.springframework.data.redis.core.RedisHash;
+
+import java.io.Serializable;
 
 @RedisHash("Student")
 public class Student implements Serializable {

@@ -46,11 +46,6 @@ public class RedisTemplateValueOpsIntegrationTest {
         redisServer.stop();
     }
 
-    @BeforeEach
-    public void setup() {
-        reactiveValueOps = redisTemplate.opsForValue();
-    }
-
     @Test
     public void givenEmployee_whenSet_thenSet() {
 

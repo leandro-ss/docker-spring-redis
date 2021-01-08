@@ -60,19 +60,19 @@ services:
   #     - elasticsearch
   #   networks: ['stack']
 
-#  mongo-db:
-#    build:
-#      context: mongo-db/
-#    ports:
-#      - "27017:27017"
-#    networks: ['stack']
+  #  mongo-db:
+  #    build:
+  #      context: mongo-db/
+  #    ports:
+  #      - "27017:27017"
+  #    networks: ['stack']
 
-   redis:
-     build:
-       context: redis/
-     ports:
-       - "6379:6379"
-     networks: ['stack']
+  redis:
+    build:
+      context: redis/
+    ports:
+      - "6379:6379"
+    networks: [ 'stack' ]
 
   # grafana:
   #   build:
@@ -102,19 +102,19 @@ services:
 #      - portainer
 #    networks: ['stack']
 #
-networks: {stack: {}}
-#volumes: {elasticsearch: {}}
+networks: { stack: { } }
+  #volumes: {elasticsearch: {}}
 
-# db-pgsql:
-#   build:
-#     context: db-pgsql/
-#   ports:
-#     - "5432:5432"
-#  volumes:
-#   - db-data:/var/lib/postgresql/data
-#   networks:
-#     - internal
-  
+  # db-pgsql:
+  #   build:
+  #     context: db-pgsql/
+  #   ports:
+  #     - "5432:5432"
+  #  volumes:
+  #   - db-data:/var/lib/postgresql/data
+  #   networks:
+  #     - internal
+
 # mysql-db:
 #   build:
 #     context: mysql-db/

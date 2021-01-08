@@ -1,10 +1,7 @@
 package com.baeldung.spring.data.redis.repo;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.baeldung.spring.data.redis.queue.RedisMessageSubscriber;
+import com.baeldung.spring.data.redis.config.RedisConfig;
+import com.baeldung.spring.data.redis.model.Student;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -14,13 +11,13 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import com.baeldung.spring.data.redis.config.RedisConfig;
-import com.baeldung.spring.data.redis.model.Student;
-
 import redis.embedded.RedisServerBuilder;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = RedisConfig.class)
@@ -29,15 +26,15 @@ public class StudentRepositoryIntegrationTest {
 
     @Autowired
     private StudentRepository studentRepository;
-    
+
     private static redis.embedded.RedisServer redisServer;
-    
+
     @BeforeAll
     public static void startRedisServer() {
         redisServer = new RedisServerBuilder().port(6379).setting("maxmemory 128M").build();
         redisServer.start();
     }
-    
+
     @AfterAll
     public static void stopRedisServer() {
         redisServer.stop();
