@@ -36,13 +36,13 @@ public class RedisKeyCommandsIntegrationTest {
     private ReactiveStringCommands stringCommands;
 
     @BeforeAll
-    public static void startRedisServer() throws IOException {
+    public static void startRedisServer() {
         redisServer = new RedisServerBuilder().port(6379).setting("maxmemory 256M").build();
         redisServer.start();
     }
 
     @AfterAll
-    public static void stopRedisServer() throws IOException {
+    public static void stopRedisServer() {
         redisServer.stop();
     }
 
@@ -52,8 +52,7 @@ public class RedisKeyCommandsIntegrationTest {
 
         Flux<SetCommand> generator = keys.map(String::getBytes)
                 .map(ByteBuffer::wrap)
-                .map(key -> SetCommand.set(key)
-                        .value(key));
+                .map(key -> SetCommand.set(key).value(key));
 
         StepVerifier.create(stringCommands.set(generator))
                 .expectNextCount(4L)
